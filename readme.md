@@ -159,6 +159,28 @@ public string GetCurrentDateAsString()
 }
 ```
 
+## Clearing Cache by key (MemoryCache only)
+
+When you want to force a ClearCache on save, update, and delete methods.
+
+```csharp
+[Cache(CacheKey = "AllPeople", Minutes = 15)]
+public IEnumerable<Person> GetAllPeople<Person>()
+{
+	return ...//Call to datasource
+}
+```
+
+```csharp
+[ClearCache(CacheKey = "AllPeople")]
+public Person SavePerson(Person p)
+{
+	return ...//Call to datasource
+}
+```
+
+Using the ClearCache attibute on a save method specifying the CacheKey, will force the cache to be repopulated when GetAllPeople is called again.
+
 ### Version
 * xCache 0.2.2
 * xCache.Aop.Unity 0.4.1
