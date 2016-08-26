@@ -28,7 +28,7 @@ namespace xCache.Aop.Unity
             var arguments = new object[input.Inputs.Count];
             input.Inputs.CopyTo(arguments, 0);
 
-            return new VirtualMethodReturn(input, null, arguments);
+            return new VirtualMethodReturn(input, getNext()(input, getNext).ReturnValue, arguments);
         }
 
     }
