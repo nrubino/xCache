@@ -22,6 +22,8 @@ namespace xCache.Aop.Unity
         public string CacheName { get; set; }
         public bool RescheduleStale { get; set; }
 
+        public string CacheKey { get; set; }
+
         public override ICallHandler CreateHandler(IUnityContainer container)
         {
             var expiration = new TimeSpan(Hours, Minutes, Seconds);
@@ -40,7 +42,8 @@ namespace xCache.Aop.Unity
                 Expiration = expiration,
                 AbsoluteExpiration = absoluteExpiration.TotalSeconds > 0 ? absoluteExpiration : (TimeSpan?)null,
                 MaximumStaleness = maximumStaleness,
-                RescheduleStale = RescheduleStale
+                RescheduleStale = RescheduleStale,
+                CacheKey = CacheKey
             };
 
             return handler;

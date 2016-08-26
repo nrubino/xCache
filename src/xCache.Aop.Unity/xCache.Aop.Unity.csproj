@@ -58,7 +58,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClearCacheAttribute.cs" />
     <Compile Include="CacheAttribute.cs" />
+    <Compile Include="ClearCacheAttributeCallHandler.cs" />
     <Compile Include="CacheAttributeCallHandler.cs" />
     <Compile Include="Durable\UnityDurableCacheRefreshHandler.cs" />
     <Compile Include="ICacheKeyGenerator.cs" />

@@ -19,7 +19,6 @@ namespace xCache.Extensions
             DateTime expires)
         {
             cache.Add(cacheKey, Wrap(value, expires));
-
             return value;
         }
 
@@ -46,6 +45,10 @@ namespace xCache.Extensions
         public static T Unwrap<T>(CacheItem<T> item)
         {
             return item.Item;
+        }
+        public static bool RemoveFromCache(ICache cache, string cacheKey)
+        {
+            return cache.Remove(cacheKey);
         }
     }
 }

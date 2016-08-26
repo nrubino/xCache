@@ -15,6 +15,7 @@ namespace xCache.Aop.Unity
         public TimeSpan? AbsoluteExpiration { get; set; }
         public TimeSpan MaximumStaleness { get; set; }
         public bool RescheduleStale { get; set; }
+        public string CacheKey { get; set; }
 
         private IUnityContainer _container;
         private readonly ICache _cache;
@@ -32,7 +33,7 @@ namespace xCache.Aop.Unity
 
         public IMethodReturn Invoke(IMethodInvocation input, GetNextHandlerDelegate getNext)
         {
-            var cacheKey = _keyGenerator.GenerateKey(input);
+            var cacheKey = string.IsNullOrEmpty(CacheKey) ? _keyGenerator.GenerateKey(input) : CacheKey;
 
             var methodIsTask = input.MethodBase.IsGenericTask();
             var returnType = input.MethodBase.GetReturnType();
